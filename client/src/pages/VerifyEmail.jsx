@@ -30,7 +30,7 @@ const VerifyEmail = () => {
   return (
     <main className="verify-container">
       <div>Verification Successfull ..!!</div>
-      <Link to="/register" className="link">
+      <Link to="/register" className="link verify-btn">
         Login
       </Link>
     </main>

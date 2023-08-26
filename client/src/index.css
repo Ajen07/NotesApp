@@ -239,10 +239,19 @@ body {
 }
 
 .verify-container {
+    min-height: 100vh;
     background-image: url('./assets/images/emailVerification.svg');
-    background-size: cover;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
     background-color: white;
     color: white;
+    position: relative;
+}
+.verify-btn{
+    top: 80vh;
+    left: 48%;
+    position: absolute;
 }
 
 /* DASHBOARD PAGE */
@@ -461,6 +470,7 @@ body {
     
 }
 
+
 .search-btn{
     border-radius: 50%;
     border: none;
@@ -497,4 +507,33 @@ body {
 .activePage{
     background-color: #aedff6;
     color: #006d9f;
+}
+@media (max-width:768px) {
+    .search-bar input{
+        width: 300px !important;
+        border-radius: 3rem;
+        padding-left: 2.5rem;
+        font-size: 1.2rem;
+        
+    }
+    .search-btn{
+        border-radius: 50%;
+        border: none;
+        background-color: white;
+        position: absolute;
+        right: 10%;
+        top: 10%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .search-bar form{
+        display: flex;
+        justify-content: center;
+        height: 3rem;
+        margin-bottom: 4rem;
+        border-color: #00B0FF;
+        position: relative;
+        margin-top: 1rem;
+}
 }

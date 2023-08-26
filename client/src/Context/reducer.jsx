@@ -26,6 +26,7 @@ import {
   TOGGLE_SIDEBAR,
   CHANGE_PAGE,
   LOGOUT_USER,
+  DELETE_NOTE_ERROR,
 } from "./action";
 
 const reducer = (state, action) => {
@@ -229,6 +230,15 @@ const reducer = (state, action) => {
       alertText: "Note deleted successfully",
     };
   }
+  if (action.type === DELETE_NOTE_ERROR) {
+    return {
+      ...state,
+      isLoading: false,
+      showAlert: true,
+      alertType: "danger",
+      alertText: "Something went wrong ..Try again later",
+    };
+  }
   if (action.type === TOGGLE_SIDEBAR) {
     return {
       ...state,
@@ -241,7 +251,7 @@ const reducer = (state, action) => {
       page: action.payload.pageNumber,
     };
   }
-  if (action.type == LOGOUT_USER) {
+  if (action.type === LOGOUT_USER) {
     return {
       user: null,
       token: null,

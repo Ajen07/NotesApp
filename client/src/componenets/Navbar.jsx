@@ -27,10 +27,10 @@ const Navbar = () => {
             </NavLink>
           );
         })}
+        <button type="button" className="btn" style={{borderRadius:'3rem'}} onClick={logoutUser}>
+          sign out
+        </button>
       </nav>
-      <button type="button" className="btn" onClick={logoutUser}>
-        sign out
-      </button>
     </>
   );
 };

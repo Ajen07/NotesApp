@@ -30,7 +30,8 @@ import {
   EDIT_NOTE_ERROR,
   TOGGLE_SIDEBAR,
   CHANGE_PAGE,
-  LOGOUT_USER
+  LOGOUT_USER,
+  DELETE_NOTE_ERROR,
 } from "./action";
 import { useNavigate } from "react-router-dom";
 const token = localStorage.getItem("token");
@@ -122,8 +123,7 @@ const AppProvider = ({ children, setError }) => {
   const logoutUser = () => {
     dispatch({ type: LOGOUT_USER });
     removeUserFromLocalStorage();
-    const navigate = useNavigate();
-    navigate("/");
+    window.location.assign('http://127.0.0.1:5173')
   };
   //Verification of email
   const verifyUserEmail = async ({ verificationToken, email }) => {
@@ -149,11 +149,9 @@ const AppProvider = ({ children, setError }) => {
     if (search) {
       url = url + `&search=${search}`;
     }
-    console.log(url);
     dispatch({ type: GET_ALL_NOTES_BEGINS });
     try {
       const { data } = await axios.get(url);
-      console.log(data);
       const { notes, totalNotes, numofPages } = data;
       dispatch({
         type: GET_ALL_NOTES_SUCCESS,
@@ -205,7 +203,7 @@ const AppProvider = ({ children, setError }) => {
       getAllNotes();
       clerAlert();
     } catch (error) {
-      console.log(error.response);
+      dispatch({ type: DELETE_NOTE_ERROR });
     }
   };
   const changePage = (pageNumber) => {

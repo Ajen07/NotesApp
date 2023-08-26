@@ -35,23 +35,21 @@ const login = async (req, res) => {
   }
   const user = await User.findOne({ email }).select("+password");
   if (!user) {
-    throw new UnauthenticatedError("Inavlid Credentials");
+    throw new BadRequestError("Not a user Please register");
   }
-  if (user.isVerified === false) {
-    throw new UnauthenticatedError("Email is not verified");
+  if (!user.isVerified) {
+    throw new BadRequestError("Email is not verified");
   }
-  const isPasswordCorrect = user.comparePassword(password);
+  const isPasswordCorrect = await user.comparePassword(password);
   if (!isPasswordCorrect) {
-    throw new UnauthenticatedError("Password is incorrect");
+    throw new BadRequestError("Password is incorrect");
   }
   const token = user.createJWT(user);
-  user.password = undefined;
 
   res.status(StatusCodes.CREATED).json({ user, token });
 };
 const verifyEmail = async (req, res) => {
   const { verificationToken, email } = req.body;
-  console.log(verificationToken, email);
   if (!verificationToken || !email) {
     throw new BadRequestError("Invalid Request");
   }
