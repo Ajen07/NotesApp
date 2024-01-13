@@ -59,7 +59,7 @@ const AppContext = React.createContext();
 
 const AppProvider = ({ children, setError }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
-  const requestURL = "https://notes-app-wm1e.onrender.com/api/v1";
+  const requestURL = "https://notes-app-bo24.onrender.com//api/v1";
   axios.defaults.headers["Authorization"] = `Bearer ${state.token}`;
   const addUserToLocalStoage = ({ user, token }) => {
     localStorage.setItem("user", JSON.stringify(user));
