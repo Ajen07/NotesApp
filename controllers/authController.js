@@ -19,7 +19,7 @@ const register = async (req, res) => {
     throw new BadRequestError("User Already exists");
   }
   const verificationToken = crypto.randomBytes(40).toString("hex");
-  const origin = "https://notes-app-wm1e.onrender.com";
+  const origin = "https://notes-app-bo24.onrender.com";
   const user = await User.create({ name, email, password, verificationToken });
   await sendVerificationEmail({ name, email, verificationToken, origin });
   const token = user.createJWT(user);
