@@ -59,7 +59,7 @@ const AppContext = React.createContext();
 
 const AppProvider = ({ children, setError }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
-  const requestURL = "https://notes-app-bo24.onrender.com//api/v1";
+  const requestURL = "https://notes-app-bo24.onrender.com/api/v1";
   axios.defaults.headers["Authorization"] = `Bearer ${state.token}`;
   const addUserToLocalStoage = ({ user, token }) => {
     localStorage.setItem("user", JSON.stringify(user));
@@ -123,7 +123,7 @@ const AppProvider = ({ children, setError }) => {
   const logoutUser = () => {
     dispatch({ type: LOGOUT_USER });
     removeUserFromLocalStorage();
-    window.location.assign('https://notes-app-wm1e.onrender.com')
+    window.location.assign('https://notes-app-bo24.onrender.com')
   };
   //Verification of email
   const verifyUserEmail = async ({ verificationToken, email }) => {
